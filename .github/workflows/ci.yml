@@ -37,7 +37,7 @@ jobs:
           exportEnv: true
           secrets: | 
             app1/data/blackduck blackduck_apiToken | BLACKDUCK_TOKEN;
-            app1/data/sonar SONAR_TOKEN | SONAR_TOKEN;
+            app1/data/sonar SONAR_TOKEN 
  
       - name: echo
         run: | 
@@ -55,16 +55,16 @@ jobs:
           echo "BLACKDUCK_TOKEN: ${{ needs.FetchSecretsFromVault.outputs.BLACKDUCK_TOKEN }}"
           echo "SONAR_TOKEN: ${{ needs.FetchSecretsFromVault.outputs.SONAR_TOKEN }}"
 
-  SonarQubeAnalysis:
-    runs-on: [ubuntu-latest]
-    needs: FetchSecretsFromVault  
-    steps:
-      - name: SonarQube analysis
-        uses: SonarSource/sonarqube-scan-action@v4.2.0
-        env:
-          SONAR_HOST_URL: http://54.159.52.131:9000/
-          SONAR_TOKEN: ${{ needs.FetchSecretsFromVault.outputs.SONAR_TOKEN  }}
-
+#  SonarQubeAnalysis:
+#    runs-on: [ubuntu-latest]
+#    needs: FetchSecretsFromVault  
+#    steps:
+#      - name: SonarQube analysis
+#        uses: SonarSource/sonarqube-scan-action@v4.2.0
+#        env:
+#          SONAR_HOST_URL: http://54.159.52.131:9000/
+#          SONAR_TOKEN: ${{ needs.FetchSecretsFromVault.outputs.SONAR_TOKEN  }}
+#
           
           
           
