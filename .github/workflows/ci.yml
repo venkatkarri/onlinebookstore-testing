@@ -34,8 +34,8 @@ jobs:
           password: admin123
           exportEnv: true
           secrets: | 
-            Apps/app1/secrets blackduck_apiToken | BLACKDUCK_TOKEN
-            Apps/app1/secrets SONAR_TOKEN | SONAR_TOKEN
+            Apps/app1/secrets blackduck_apiToken | BLACKDUCK_TOKEN;
+            Apps/app1/secrets SONAR_TOKEN | SONAR_TOKEN;
 
       - name: echo
         run: | 
