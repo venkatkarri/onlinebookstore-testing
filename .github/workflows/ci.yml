@@ -29,9 +29,8 @@ jobs:
           url: http://54.159.52.131:8200/
           method: userpass
           path: userpass
-##          namespace: enreda
-          username: admin1
-          password: admin123
+          username: "admin1"
+          password: "admin123"
           exportEnv: true
           secrets: | 
             app1/data/blackduck blackduck_apiToken | BLACKDUCK_TOKEN;
