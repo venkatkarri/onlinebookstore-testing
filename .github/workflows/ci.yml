@@ -49,7 +49,7 @@ jobs:
         run: | 
           echo "${{ env.SONAR_TOKEN }}"
           echo "${{ env.BLACKDUCK_TOKEN }}"
-          
+          echo "${{ env.TEST_TOKEN }}"
 
   SonarQubeAnalysis:
     runs-on: [ubuntu-latest]
