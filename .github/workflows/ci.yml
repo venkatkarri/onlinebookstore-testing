@@ -33,9 +33,9 @@ jobs:
           username: venkatkarri66@gmail.com
           password: Kkvs_51234
           exportEnv: true
-        secrets: | 
-          Apps/app1/secrets blackduck_apiToken | BLACKDUCK_TOKEN
-          Apps/app1/secrets SONAR_TOKEN | SONAR_TOKEN
+          secrets: | 
+            Apps/app1/secrets blackduck_apiToken | BLACKDUCK_TOKEN
+            Apps/app1/secrets SONAR_TOKEN | SONAR_TOKEN
 
   Test_secrets: 
     runs-on: ubuntu-latest
