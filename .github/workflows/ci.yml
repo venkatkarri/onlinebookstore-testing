@@ -26,16 +26,21 @@ jobs:
         id: vault
         uses: hashicorp/vault-action@v2
         with:
-          url: https://portal.cloud.hashicorp.com/services/secrets/
+          url: http://54.159.52.131:8200/
           method: userpass
           path: userpass
 ##          namespace: enreda
-          username: venkatkarri66@gmail.com
-          password: Kkvs_51234
+          username: admin1
+          password: admin123
           exportEnv: true
           secrets: | 
             Apps/app1/secrets blackduck_apiToken | BLACKDUCK_TOKEN
             Apps/app1/secrets SONAR_TOKEN | SONAR_TOKEN
+
+      - name: echo
+        run: | 
+          echo "${{ env.SONAR_TOKEN }}"
+          echo "${{ env.BLACKDUCK_TOKEN }}"
 
   Test_secrets: 
     runs-on: ubuntu-latest
