@@ -21,6 +21,9 @@ jobs:
           
   FetchSecretsFromVault:
     runs-on: [ubuntu-latest] 
+    outputs: 
+      BLACKDUCK_TOKEN: ${{ steps.vault.outputs.BLACKDUCK_TOKEN }} 
+      SONAR_TOKEN: ${{ steps.vault.outputs.SONAR_TOKEN }}
     steps:
       - name: Get Secrets from Vault
         id: vault
@@ -40,6 +43,8 @@ jobs:
         run: | 
           echo "${{ env.SONAR_TOKEN }}"
           echo "${{ env.BLACKDUCK_TOKEN }}"
+          echo "BLACKDUCK_TOKEN: ${{ needs.FetchSecretsFromVault.outputs.BLACKDUCK_TOKEN }}"
+          echo "SONAR_TOKEN: ${{ needs.FetchSecretsFromVault.outputs.SONAR_TOKEN }}"
 
   Test_secrets: 
     runs-on: ubuntu-latest
@@ -47,9 +52,8 @@ jobs:
     steps: 
       - name: Test_secrets
         run: | 
-          echo "${{ env.SONAR_TOKEN }}"
-          echo "${{ env.BLACKDUCK_TOKEN }}"
-          echo "${{ env.TEST_TOKEN }}"
+          echo "BLACKDUCK_TOKEN: ${{ needs.FetchSecretsFromVault.outputs.BLACKDUCK_TOKEN }}"
+          echo "SONAR_TOKEN: ${{ needs.FetchSecretsFromVault.outputs.SONAR_TOKEN }}"
 
   SonarQubeAnalysis:
     runs-on: [ubuntu-latest]
@@ -59,7 +63,7 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v4.2.0
         env:
           SONAR_HOST_URL: http://54.159.52.131:9000/
-          SONAR_TOKEN: ${{ env.SONAR_TOKEN }}
+          SONAR_TOKEN: ${{ needs.FetchSecretsFromVault.outputs.SONAR_TOKEN  }}
 
           
           
