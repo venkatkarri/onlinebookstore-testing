@@ -43,8 +43,10 @@ jobs:
         run: | 
           echo "${{ env.SONAR_TOKEN }}"
           echo "${{ env.BLACKDUCK_TOKEN }}"
-          echo "BLACKDUCK_TOKEN: ${{ needs.FetchSecretsFromVault.outputs.BLACKDUCK_TOKEN }}"
-          echo "SONAR_TOKEN: ${{ needs.FetchSecretsFromVault.outputs.SONAR_TOKEN }}"
+          echo "BLACKDUCK_TOKEN1=${{ env.BLACKDUCK_TOKEN }}" >> $GITHUB_ENV
+          echo "SONAR_TOKEN1=${{ env.SONAR_TOKEN }}" >> $GITHUB_ENV
+#          echo "BLACKDUCK_TOKEN: ${{ needs.FetchSecretsFromVault.outputs.BLACKDUCK_TOKEN }}"
+#          echo "SONAR_TOKEN: ${{ needs.FetchSecretsFromVault.outputs.SONAR_TOKEN }}" 
 
   Test_secrets: 
     runs-on: ubuntu-latest
@@ -52,8 +54,10 @@ jobs:
     steps: 
       - name: Test_secrets
         run: | 
-          echo "BLACKDUCK_TOKEN: ${{ needs.FetchSecretsFromVault.outputs.BLACKDUCK_TOKEN }}"
-          echo "SONAR_TOKEN: ${{ needs.FetchSecretsFromVault.outputs.SONAR_TOKEN }}"
+          echo ${{ env.BLACKDUCK_TOKEN1 }}
+          echo ${{ env.SONAR_TOKEN1 }} 
+#          echo "BLACKDUCK_TOKEN: ${{ needs.FetchSecretsFromVault.outputs.BLACKDUCK_TOKEN }}"
+#          echo "SONAR_TOKEN: ${{ needs.FetchSecretsFromVault.outputs.SONAR_TOKEN }}"
 
 #  SonarQubeAnalysis:
 #    runs-on: [ubuntu-latest]
