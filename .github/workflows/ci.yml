@@ -19,6 +19,11 @@ jobs:
           ref: ${{ github.event.inputs.branch || 'develop' }}
           fetch-depth: 0
           
+      - name: sha
+        run: | 
+          echo "The first 8 char ${GITHUB_SHA:0:8}" 
+          echo "The first 8 char ${GITHUB_SHA:0:12}"
+    
  # FetchSecretsFromVault:
  #   runs-on: [ubuntu-latest] 
  #   outputs: 
