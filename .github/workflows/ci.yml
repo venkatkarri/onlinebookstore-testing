@@ -88,8 +88,12 @@ jobs:
           password: "admin123"
           exportEnv: true
           secrets: | 
-            app1/data/blackduck blackduck_apiToken || BLACKDUCK_TOKEN;
-            app1/data/sonar SONAR_TOKEN || SONAR_TOKEN
+            app1/data/blackduck blackduck_apiToken | BLACKDUCK_TOKEN;
+            app1/data/sonar SONAR_TOKEN | SONAR_TOKEN;
+            app1/data/docker HARBOR_USERNAME || HARBOR_USERNAME;
+            app1/data/docker HARBOR_PASSWORD || HARBOR_PASSWORD;
+#            app1/data/blackduck blackduck_apiToken || BLACKDUCK_TOKEN;
+#            app1/data/sonar SONAR_TOKEN || SONAR_TOKEN
     
       - name: Set outputs
         id: set-outputs
